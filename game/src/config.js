@@ -1,61 +1,76 @@
-// Every tuning number and colour in one place. The playfield is a fixed 1280x720 logical area;
-// the renderer scales it to the window, so no rule below depends on the screen size.
+// ORBITBREAK — tuning numbers and colours for a radial arcade shooter.
+// The playfield is a fixed 1280x720 logical area; the renderer scales it to the window.
 
-export const FIELD = { width: 1280, height: 720, groundY: 664 };
+export const FIELD = { width: 1280, height: 720, cx: 640, cy: 360 };
 
-/** The simulation's fixed step, in seconds: 60 updates a second whatever the display's rate. */
+/** The simulation's fixed step, in seconds: 60 updates a second whatever the display rate. */
 export const STEP = 1 / 60;
 
-export const PLAYER = {
-  width: 72,
-  height: 24,
-  speed: 560,
-  invulnerable: 1.5,
+export const CORE = {
+  radius: 30,
+  shieldMax: 5,
+  invulnerable: 1.2,
 };
 
-export const LIVES = 3;
-
-export const BLOCK = {
-  minWidth: 40,
-  maxWidth: 110,
-  height: 36,
-  speed: 240,
-  speedPerLevel: 30,
-  speedJitter: 90,
-  interval: 0.55,
-  intervalScale: 0.88,
-  minInterval: 0.14,
-  dodgePoints: 1,
+export const GUARD = {
+  radius: 9,
+  orbit: 150,
+  speed: 3.1,
+  fireCooldown: 0.16,
 };
 
-export const COIN = {
-  size: 24,
-  speed: 190,
-  speedPerLevel: 14,
-  interval: 1.4,
-  intervalJitter: 0.8,
-  points: 10,
+export const BULLET = {
+  speed: 780,
+  radius: 5,
+  life: 1.8,
+  bounces: 3,
 };
 
-/** Seconds of play per level, and the last level: speeds and spawn rates stop growing there. */
-export const LEVEL = { seconds: 12, max: 12 };
+export const ENEMY = {
+  radius: 13,
+  baseSpeed: 62,
+  speedPerWave: 12,
+  spin: 0.6,
+  interval: 1.15,
+  intervalScale: 0.9,
+  minInterval: 0.3,
+  score: 100,
+};
 
-/** How many falling things can exist at once; the pool is allocated once, at boot. */
-export const POOL_SIZE = 64;
+export const PICKUP = {
+  radius: 12,
+  chance: 0.16,
+  life: 8,
+  fallSpeed: 46,
+  slowFactor: 0.35,
+  slowTime: 5,
+  spreadTime: 8,
+};
+
+/** Seconds of play per wave, and the last wave. */
+export const WAVE = { seconds: 16, max: 12 };
+
+export const POOL_SIZE = 128;
 
 export const PALETTE = {
-  backdrop: '#11141b',
-  sky: '#1b1f2a',
-  ground: '#2a3040',
-  player: '#4fc3f7',
-  block: '#e5534b',
-  coin: '#f2c94c',
-  panel: '#252b38',
-  text: '#eef1f5',
-  muted: '#8b93a3',
+  backdrop: '#050812',
+  sky: '#0a1120',
+  grid: 'rgba(64, 112, 176, 0.10)',
+  star: 'rgba(150, 200, 255, 0.7)',
+  guard: '#38f0e0',
+  bullet: '#8bffe0',
+  enemy: '#ff3d7f',
+  enemyAlt: '#ff8a3d',
+  core: '#ffb13d',
+  coreHit: '#ff5d5d',
+  pickupHeal: '#6dff8a',
+  pickupSpread: '#ffe14d',
+  pickupSlow: '#4dd8ff',
+  panel: '#0d1626',
+  text: '#e8f4ff',
+  muted: '#8398b4',
 };
 
 export const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
 
-/** Where the best score is kept between visits (this browser only). */
-export const BEST_KEY = 'block-dodger.best';
+export const BEST_KEY = 'orbitbreak.best';

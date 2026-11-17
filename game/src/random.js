@@ -1,5 +1,5 @@
-// A small seeded random number generator (mulberry32): the same seed gives the same game,
-// which is what makes the screenshot scenes repeatable.
+// A seeded random number generator (mulberry32). The same seed produces the same game,
+// which is what makes the screenshot scenes repeatable and the simulation deterministic.
 
 export function createRandom(seed) {
   let a = seed | 0;
